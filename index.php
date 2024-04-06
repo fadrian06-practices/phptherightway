@@ -1,48 +1,88 @@
 <?php
 
-/*----------  Override variables  ----------*/
-// $firstName = 'Gio';
+/*----------  Data types & Type casting  ----------*/
 
-// $firstName = 'Joe';
+# 4 scalar types
+# bool - true / false
+// $completed = true;
 
-// echo $firstName; # prints: Joe
+# int - 1, 2, 3, 0, -5 (no decimal)
+// $score = 75;
 
-/*----------  define()  ----------*/
-// define('STATUS_PAID', 'paid');
+# float - 1.5, 0.1, 0.005, -15.8
+// $price = 0.99;
 
-// define('STATUS_PAID', 1); # PHP Warning
+# string - 'Gio', "Hello World"
+// $greeting = 'Hello Gio';
 
-// echo STATUS_PAID; # prints: paid
-// echo defined('STATUS_PAID'); # prints: 1
+// echo $completed, '<br />'; # print: 1
+// echo false, '<br />';      # print:
+// echo $score, '<br />';     # print: 75
+// echo $price, '<br />';     # print: 0.99
+// echo $greeting, '<br />';  # print: Hello Gio
 
-/*----------  const  ----------*/
-// const STATUS_PAID = 'paid';
+// echo gettype($completed), '<br />'; # print: boolean
+// echo gettype($score), '<br />';     # print: integer
+// echo gettype($price), '<br />';     # print: double
+// echo gettype($greeting), '<br />';  # print: string
 
-// echo STATUS_PAID; # prints: paid
+// var_dump($completed); # print: bool(true)
+// echo '<br />';
+// var_dump($score); # print: int(75)
+// echo '<br />';
+// var_dump($price); # print: float(0.99)
+// echo '<br />';
+// var_dump($greeting); # print: string(9) "Hello Gio"
+// echo '<br />';
 
-/*----------  Differences  ----------*/
-// if (true) {
-//   // const FOO = 'bar'; # Parse error
-//   define('STATUS_PAID', 9); # works
+# 4 compound types
+# array
+// $companies = [1, 2, 3, 0.5, -9.2, 'A', "b", true];
+
+// echo $companies; # prints: PHP Warning ... Array
+// print_r($companies); # prints: Array ( [0] => 1 [1] => 2 [2] => 3 [3] => 0.5 [4] => -9.2 [5] => A [6] => b [7] => 1 )
+// echo '<br />';
+
+# object
+# callable
+# iterable
+
+# 2 special types
+# resource
+# null
+// $name = null;
+
+// var_dump($name); # prints: NULL
+// echo '<br />';
+
+/*----------  Type casting  ----------*/
+// function sum(int $x, int $y) {
+//   $x = 5.5;
+
+//   var_dump($x, $y); # prints: float(5.5) int(3)
+//   echo '<br />';
+
+//   return $x + $y;
 // }
 
-/*----------  Dynamic constants  ----------*/
-// $paid = 'PAID';
-// define("STATUS_$paid", $paid);
+// $sum = sum(2.5, '3'); # prints: Deprecated
+// echo $sum, '<br />'; # prints: 8.5
+// var_dump($sum); # prints: int(8.5)
 
-// echo STATUS_PAID; # prints: PAID
+/*----------  Strict types  ----------*/
 
-/*----------  Builtin constants  ----------*/
-// echo PHP_VERSION; # prints for example: 8.2.17
-// echo __LINE__; # prints: 37
-// echo __LINE__; # prints: 38
-// echo __FILE__; # prints for example: C:\www\index.php
+// declare(strict_types=1);
 
-/*----------  Variables variables  ----------*/
-$foo = 'bar';
-$$foo = 'baz';
+// function sum(float $x, float $y) {
+//   return $x + $y;
+// }
 
-// echo $foo, ' ', $$foo; # prints: bar baz
-// echo "$foo $$foo"; # prints: bar $bar
-echo "$foo {$$foo}"; # prints: bar baz
-// echo "$foo ${$foo}"; # prints: bar baz
+// // $sum = sum('2', 3); # Fatal error
+// $sum = sum(3, 2);      # works
+// echo $sum, '<br />';   # print: 5
+// var_dump($sum);        # print: float(5)
+
+/*----------  Type casting  ----------*/
+$x = (int) '5';
+
+var_dump($x); # print: int(5)
